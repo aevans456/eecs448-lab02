@@ -111,7 +111,7 @@ bool LinkedList<T>::removeBack()
         if(!isEmpty())
         {
                lastNode = m_front;
-               while(lastNode->getNext()!=nullptr)
+               while(lastNode->getNext()!=nullptr) //get lastnode to point at last
                {
                    secondintoLast = lastNode;
                    lastNode = lastNode->getNext();
@@ -119,7 +119,7 @@ bool LinkedList<T>::removeBack()
 
                }
                delete lastNode;
-               secondintoLast->setNext(nullptr);
+               secondintoLast->setNext(nullptr); //make sure no memory leaks
                m_size--;
                isRemoved=true;
         }
