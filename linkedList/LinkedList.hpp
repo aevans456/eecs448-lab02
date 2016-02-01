@@ -106,22 +106,22 @@ bool LinkedList<T>::removeBack()
 	Node<T>* lastNode = nullptr;
 	Node<T>* secondintoLast = nullptr;
 	bool isRemoved = false;
+        Node<T>* temp = nullptr;
 
-        if (m_size == 0)
+        if(!isEmpty())
         {
-                throw(std::runtime_error("Cannot remove from empty list"));
-        }
-        else
-        {
-                Node* tempPtr = m_head;
-                for (int i = 0; i < m_size-2; i++)
-                {
-                        tempPtr = tempPtr->getNext();
-                }
-                delete m_tail;
-                m_tail = tempPtr;
-                m_tail->setNext(nullptr);
-                m_size--;
+               lastNode = m_front;
+               while(lastNode->getNext()!=nullptr)
+               {
+                   secondintoLast = lastNode;
+                   lastNode = lastNode->getNext();
+
+
+               }
+               delete lastNode;
+               secondintoLast->setNext(nullptr);
+               m_size--;
+               isRemoved=true;
         }
 
 	return(isRemoved);
