@@ -1,9 +1,10 @@
 /**
-*	@author 
-*	@date 
+*	@author audrey evans
+*	@date 2/1/16
 *	@file LinkedList.hpp
 *	@brief Implementation file for templated LinkedList class
 */
+
 
 template <typename T>
 LinkedList<T>::LinkedList() : m_front(nullptr), m_size(0)
@@ -39,13 +40,13 @@ bool LinkedList<T>::search(T value) const
 	Node<T>* temp = m_front;
 	bool isFound = false;
 
-	while(tempPtr !=nullptr)
+        while(temp !=nullptr)
 	{
-		if(tempPtr->getValue() == val)
+                if(temp->getValue() == value)
 		{
 			isFound=true;
 		}
-		tempPtr = tempPtr->getNext();
+                temp = temp->getNext();
 	}	
 
 	return(isFound);
@@ -106,9 +107,22 @@ bool LinkedList<T>::removeBack()
 	Node<T>* secondintoLast = nullptr;
 	bool isRemoved = false;
 
-	/** TODO 
-		Fix this method
-	*/
+        if (m_size == 0)
+        {
+                throw(std::runtime_error("Cannot remove from empty list"));
+        }
+        else
+        {
+                Node* tempPtr = m_head;
+                for (int i = 0; i < m_size-2; i++)
+                {
+                        tempPtr = tempPtr->getNext();
+                }
+                delete m_tail;
+                m_tail = tempPtr;
+                m_tail->setNext(nullptr);
+                m_size--;
+        }
 
 	return(isRemoved);
 }	
